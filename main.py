@@ -1,7 +1,5 @@
 import solver
-import time
 import pygame
-import threading
 import board
 
 puzzle = [
@@ -22,13 +20,16 @@ screen = pygame.display.set_mode((square * 9, square * 9))
 clock = pygame.time.Clock()
 running = True
 board = board.Board(screen, square)
-board.copy(puzzle)
 solver = solver.Solver(board)
 
+pygame.draw.rect(screen, (255, 255, 255), (0, 0, square * 9, square * 9))
+
 for row in range(1, 9):
-    pygame.draw.line(screen, (255, 255, 255), (square * row, 0), (square * row, square * 9), 5 if row % 3 == 0 else 1)
+    pygame.draw.line(screen, (0, 0, 0), (square * row, 0), (square * row, square * 9), 5 if row % 3 == 0 else 1)
 for col in range(1, 9):
-    pygame.draw.line(screen, (255, 255, 255), (0, square * col), (square * 9, square * col), 5 if col % 3 == 0 else 1)
+    pygame.draw.line(screen, (0, 0, 0), (0, square * col), (square * 9, square * col), 5 if col % 3 == 0 else 1)
+
+board.copy(puzzle)
 
 while running:
 

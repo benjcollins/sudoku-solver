@@ -50,10 +50,10 @@ class Solver(threading.Thread):
         if row < 9:
             if self.board.get_cell(row, col) == 0:
                 for i in range(1, 10):
-                    self.board.set_cell(row, col, i)
+                    self.board.set_cell(row, col, i, "red")
                     if self.check(row, col) and self.solve_next(row, col):
                         return True
-                self.board.set_cell(row, col, 0)
+                self.board.set_cell(row, col, 0, "red")
                 return False
             return self.solve_next(row, col)
         return True
